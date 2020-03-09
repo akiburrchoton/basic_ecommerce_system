@@ -1,0 +1,23 @@
+1. Folder Management
+2. Bootstap and Font Awesome Integration
+3. Layout Selection 
+4. Template Creation
+5. Login Fomr Creation
+6. Datbase Creation
+7. Datbase Table Creation
+8. Connection Project File with Database
+9. Complete the Login Page 
+10. Password Encryption
+11. Session Start
+12. Session End
+13. Redirect the login page if True > Dashboard.php
+14. Redirect the Login page if Logout > index.php
+15. Make the first funcion of dynamic page title from the functions.php;
+16. Add the navigation menu on the Dashboard page and remove from login page. 
+--------------------------------------------------
+ 17. Make the navbar function from language page and print the user name on right side
+18. Make the Dynamic page for members
+19. Create the add members add page 
+20. Create the memebers Profile Edit page
+21. Insert the members page data with full functionality
+22.  Page redirection

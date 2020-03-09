@@ -1,0 +1,24 @@
+/* =======================================
+    ADMIN PANEL CSS Code Index
+
+    1. GLobal CSS 
+    2. 
+
+======================================= */
+
+
+
+/* =======================================
+= ADMIN PANEL Global CSS
+======================================= */
+
+@import url('https://fonts.googleapis.com/css?family=Spartan:100,200,300,400,500,600,700,800,900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-family: 'Spartan', sans-serif;
+    
+}
