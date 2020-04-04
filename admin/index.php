@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="col-md-7">
                         <div class="card-body">
                             <div class="brand-wrapper">
-                            <h3 style="font-weight: 700;">E-COMMERCE</h3>
+                            <h3 style="font-weight: 700; ">E-COMMERCE</h3>
                             </div>
                             <p class="login-card-description">Sign into your account</p>
                             <form action="<?= $_SERVER['PHP_SELF']; ?>" method="POST">

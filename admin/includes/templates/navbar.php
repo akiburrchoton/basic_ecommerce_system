@@ -11,10 +11,10 @@
                 <a class="nav-link" href="dashboard.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><?= lang('CATEGORIES'); ?></a>
+                <a class="nav-link" href="categories.php?do=manage"><?= lang('CATEGORIES'); ?></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><?= lang('ITEMS'); ?></a>
+                <a class="nav-link" href="items.php?do=manage"><?= lang('ITEMS'); ?></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="members.php?do=manage"><?= lang('MEMBERS'); ?></a>

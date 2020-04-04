@@ -1,12 +1,16 @@
 <?php
 
-/*=======================================================================
+    /*=======================================================================
     =   Use this page for registering Member,
     =   Edit Memeber Profile, Update Memeber Profile, Delete Memeber Profile
     =   Delete Member Profile
     =   -> Super Admin can approve any user account or suspend
     =   GroupID { 1 => SuperAdmin, 2 => Vendor, 3 => Normal users }
     =======================================================================*/
+
+    // Output Buffering Starts Here
+    ob_start();
+
     session_start();
     $pageTitle = 'Members';
 
@@ -23,18 +27,17 @@
             
             // Pending Member Approval Query
             $query = '';
-            if(isset($_GET['page']) && $_GET['page'] == 'Pending'){
-                $query = 'AND ResStatus = 0';
+            if(isset($_GET['page']) && $_GET['page'] == 'pending'){
+                $query = 'AND RegStatus = 0';
             }
 
             // Select All Users from Users table
-            $query1 = "SELECT * FROM users WHERE GroupID != 1 $query ORDER BY UserID";
+            $query1 = "SELECT * FROM users WHERE GroupID != 1 $query ORDER BY UserID";// If [page = pending] then [$query=AND RegStatus = 0] -> it will show pending users only. ELSE [$query=''] -> which will show the active users
             $stmt  = $connection->prepare($query1);
             $stmt->execute();
             $rows = $stmt->fetchAll();
 
-            if(!empty($rows)){
-?>
+            if(!empty($rows)){ ?>
 
                 <div class="container">
                     <div class="row">
@@ -73,12 +76,12 @@
                                             // Action Buttons
                                             echo "<td>  
                                             
-                                            <a href='members.php?do=edit&userid=" . $row['UserID'] . " ' class='btn btn-success'>EDIT</a> 
+                                            <a href='members.php?do=edit&userid={$row['UserID']}' class='btn btn-success'>EDIT</a> 
                                             </br></br>
-                                            <a href='members.php?do=delete&userid=" . $row['UserID'] . " ' class='btn btn-danger'>DELETE</a></br></br>";
+                                            <a href='members.php?do=delete&userid={$row['UserID']}' class='btn btn-danger'>DELETE</a></br></br>";
                                             
                                             if($row['RegStatus'] == 0){
-                                                echo "<a href='members.php?do=active&userid=" . $row['UserID'] . " ' class='btn btn-info'>ACTIVE</a>";
+                                                echo "<a href='members.php?do=active&userid={$row['UserID']}' class='btn btn-info'>ACTIVE</a>";
                                             }
 
                                             echo "</td>";  
@@ -93,8 +96,7 @@
                         <?php echo '<a href="members.php?do=add"><button type="submit" class="btn btn-primary">Add New Memeber</button></a>';?>
                     </div>
                 </div>
-
-<?php       
+<?php  
             }
 ?>
 
@@ -327,10 +329,7 @@
             // Count Row
             $count = $stmt -> rowCount();
 
-            if($count > 0){// Nested if ends here
-                // echo "COUNT is = ". $count ;
-                // echo "<br>UserID is = ". $userid ;
-                // echo "<br>Username is = ". $row['Username'] ;
+            if($count > 0){// Nested if ends here 
                   
         ?>
 
@@ -346,7 +345,6 @@
                     <!-- Member Edit page form starts here  -->
                     <div class="col-lg-6 offset-lg-3">
                         <form action="?do=update" method="POST">
-
 
                             <!-- Hidden field for USER ID  -->
                             <input type="hidden" name="userid" value="<?php echo $userid;?>">
@@ -376,7 +374,6 @@
                             <div class="form-group">
                                 <input type="email" name="email" class="form-control" value="<?= $row['Email']; ?>"  >
                             </div>
-
 
                             <!-- Phone Field -->
                             <div class="form-group">
@@ -418,8 +415,6 @@
                 $phone        = $_POST['phone']   ;
                 $address      = $_POST['address'] ;
                 
-                // echo $id . " " . $user . " " . $fullname;
-                
                 $pass         = empty($_POST['newPassword']) ? $_POST['oldPassword'] : sha1($_POST['newPassword']);
 
                 // Validate Form - EDIT Page
@@ -460,27 +455,24 @@
                 }
                 
 
-                // Check if there's no error > then proceed the update operation
+               // Check if there's no error > then proceed the update operation
                 if(empty($formErrors)){
-
-                    $stmt2 = $connection->prepare("SELECT * FROM users WHERE Username = ? AND UserID = ? ");
+ 
+                    $stmt2 = $connection->prepare("SELECT * FROM users WHERE Username = ? AND UserID != ? "); // UserID is not the same in this Query.
                     $stmt2->execute(array($user, $id));
-                    $count = $stmt2->rowCount();
-                    echo $count;
+                    $count = $stmt2->rowCount(); 
+
                     if($count == 1){
                         echo '<div class="alert alert-danger">Sorry this user already exists</div>';
-                        
                     }else{
                         // Update the user info in database
-                        $query = '';
-
                         $stmt = $connection->prepare("UPDATE users SET Username = ?, Password = ?, FullName = ?, Email = ?, PhoneNumber = ?, PAddress = ? WHERE UserID = ? ");
                         $stmt->execute(array($user, $pass, $fullname, $email, $phone, $address, $id));
 
                         // Print Success Message 
                         $message = '<div class="alert alert-success">' . $stmt->rowCount() . ' record has been updated.</div>';
-                        
-                        // Redirect the page on the homepage for error message
+                         
+                         
                         redirectHome($message, 'back', 6);
                     }
                 }
@@ -497,20 +489,12 @@
  
             $checkCurrentUser = checkItem('userid', 'users', $userid);
 
-            // $stmt = $connection->prepare('SELECT * FROM users WHERE UserID = ? LIMIT 1');
-            // // Execute the query
-            // $stmt -> execute(array($userid));
-
-            // // Row counting 
-            // $count = $stmt->rowCount();
-            // 
-
             if($checkCurrentUser > 0){
                 $stmt = $connection->prepare("DELETE from users WHERE UserID = :zuser");
                 $stmt->bindParam(":zuser", $userid);
                 $stmt->execute(); 
 
-                $message = "<div class='alert alert-success'>". $stmt->rowCount() ." record has been deleted successfully!</div>";
+                $message = "<div class='alert alert-danger'>". $stmt->rowCount() ." record has been deleted successfully!</div>";
 
                 redirectHome($message, 'back', 5);
             }else{
@@ -548,4 +532,8 @@
         header('Location: index.php');
         exit();
     }   
+
+
+    // Output Buffering Ends Here
+    ob_end_flush();
 ?>

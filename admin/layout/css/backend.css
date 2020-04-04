@@ -21,7 +21,12 @@ body {
   background-color: #e7e7e7;
   min-height: 100vh;
 }
-
+a{
+  color: #919aa3;
+}
+.navbar{
+  margin-bottom: 20px;
+}
 
 
 /* Index (Login) CSS Starts Here */
@@ -121,3 +126,76 @@ body {
   color: #919aa3;
 }
 /* Index (Login) CSS Ends Here */
+
+
+/* Dashboard Page Design Starts */
+.items-detail{
+  
+}
+.items-info{
+  padding: 50px 25px;
+  border-radius: 10px;
+  color: #ffffff;
+  text-align: center;
+}
+.items-info .fa{
+  padding-bottom: 25px;
+}
+.items-info p{
+  font-size: 70px;
+  font-weight: 100;
+  line-height: 0;
+  margin-top: 60px;
+}
+.items-info h6{
+  font-weight: 600;
+}
+.items-info a{
+  color: #ffffff;
+  text-decoration: none;
+  transition: .35s all;
+}
+.items-info a:hover{
+  color: #afc9d4;
+}
+
+.col-sm-3:nth-child(1) .items-info{
+ background: #008396;
+}
+.col-sm-3:nth-child(2) .items-info{
+ background: #006b7b;
+}
+.col-sm-3:nth-child(3) .items-info{
+ background: #004e5a;
+}
+.col-sm-3:nth-child(4) .items-info{
+ background: #00333b;
+}
+/* Dashboard Page Design Ends */
+
+/* Category Page Design Starts */
+.category-item{
+  margin-bottom: 35px;
+}
+.cat-info{
+  padding: 5px 15px;
+  margin-right: 10px;
+  border-radius: 5px;
+  color: white;
+}
+.cat-info .fa{
+  margin-right: 5px;
+}
+
+.activee{
+  background-color: #28a745;
+}
+
+.disablee{
+  background-color: #dc3545;
+}
+.child-parent{
+
+}
+/* Category Page Design Ends */
+
