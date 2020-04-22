@@ -17,10 +17,9 @@
     if (isset($_SESSION['Username'])) {
         include 'init.php';
 
-
         $do = isset($_GET['do']) ? $_GET['do'] : 'manage';
 
-        if ($do == 'manage') {
+        if ($do == 'manage'){
             // Manage the vendor accounts 
             echo "<h5 class='text-center'>Welcome to the Super Admin Page</h5>";
 
@@ -37,73 +36,72 @@
             $stmt->execute();
             $rows = $stmt->fetchAll();
 
-            if(!empty($rows)){ ?>
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg">
-                            <hr>
-                            <h1 class="text-center">Manage Members </h1>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-bordered text-center">
-                                <tr>
-                                    <td>#ID</td>
-                                    <td>Profile Picture</td>
-                                    <td>User Name</td>
-                                    <td>Full Name</td>
-                                    <td>Email</td>
-                                    <td>Phone Number</td>
-                                    <td>Address</td>
-                                    <td>Reg Address</td>
-                                    <td>Action</td>
-                                </tr>
-
-                                <?php
-                                    
-                                    foreach ($rows as $row) {
-                                        $src = 'layout/images/avatar/'. $row['Avatar'];
-                                        echo "<tr>";                                        
-                                            echo "<td>" . $row['UserID'] . "</td>";   
-                                            echo "<td><img src='{$src}' width='100px'></td>"; // Rather than using (.) I used { } to concatanate. 
-                                            echo "<td>" . $row['Username'] . "</td>";  
-                                            echo "<td>" . $row['FullName'] . "</td>";  
-                                            echo "<td>" . $row['Email'] . "</td>";  
-                                            echo "<td>" . $row['PhoneNumber'] . "</td>";  
-                                            echo "<td>" . $row['PAddress'] . "</td>";  
-                                            echo "<td>" . $row['Date'] . "</td>";  
-                                            
-                                            // Action Buttons
-                                            echo "<td>  
-                                            
-                                            <a href='members.php?do=edit&userid={$row['UserID']}' class='btn btn-success'>EDIT</a> 
-                                            </br></br>
-                                            <a href='members.php?do=delete&userid={$row['UserID']}' class='btn btn-danger'>DELETE</a></br></br>";
-                                            
-                                            if($row['RegStatus'] == 0){
-                                                echo "<a href='members.php?do=active&userid={$row['UserID']}' class='btn btn-info'>ACTIVE</a>";
-                                            }
-
-                                            echo "</td>";  
-
-                                        echo "</tr>";
-                                    }
-                                
-                                ?>
-
-                            </table>
-                        </div>
-                        <?php echo '<a href="members.php?do=add"><button type="submit" class="btn btn-primary">Add New Memeber</button></a>';?>
-                    </div>
-                </div>
-<?php  
-            }
+            if(!empty($rows)){ 
 ?>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg">
+                        <hr>
+                        <h1 class="text-center">Manage Members </h1>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center">
+                            <tr>
+                                <td>#ID</td>
+                                <td>Profile Picture</td>
+                                <td>User Name</td>
+                                <td>Full Name</td>
+                                <td>Email</td>
+                                <td>Phone Number</td>
+                                <td>Address</td>
+                                <td>Reg Address</td>
+                                <td>Action</td>
+                            </tr>
 
-        <?php
-        } else if ($do == 'add') { 
-            
-        ?>
+                            <?php
+                                
+                                foreach ($rows as $row){
+                                    $src = 'layout/images/avatar/'. $row['Avatar'];
+                                    echo "<tr>";                                        
+                                        echo "<td>" . $row['UserID'] . "</td>";   
+                                        echo "<td><img src='{$src}' width='100px'></td>"; // Rather than using (.) I used { } to concatanate. 
+                                        echo "<td>" . $row['Username'] . "</td>";  
+                                        echo "<td>" . $row['FullName'] . "</td>";  
+                                        echo "<td>" . $row['Email'] . "</td>";  
+                                        echo "<td>" . $row['PhoneNumber'] . "</td>";  
+                                        echo "<td>" . $row['PAddress'] . "</td>";  
+                                        echo "<td>" . $row['Date'] . "</td>";  
+                                        
+                                        // Action Buttons
+                                        echo "<td>  
+                                        
+                                        <a href='members.php?do=edit&userid={$row['UserID']}' class='btn btn-success'>EDIT</a> 
+                                        </br></br>
+                                        <a href='members.php?do=delete&userid={$row['UserID']}' class='btn btn-danger'>DELETE</a></br></br>";
+                                        
+                                        if($row['RegStatus'] == 0){
+                                            echo "<a href='members.php?do=active&userid={$row['UserID']}' class='btn btn-info'>ACTIVE</a>";
+                                        }
+
+                                        echo "</td>";  
+
+                                    echo "</tr>";
+                                }
+                            
+                            ?>
+
+                        </table>
+                    </div>
+                    <?php echo '<a href="members.php?do=add"><button type="submit" class="btn btn-primary">Add New Memeber</button></a>';?>
+                </div>
+            </div>
+<?php  
+            }// Nested if ends here
+?>
+<?php
+        } // If(manage) ends here
+        else if ($do == 'add') {        
+?>
             <!-- Write html code for 'do==add' here -->
             <section>
                 <div class="container">
@@ -165,7 +163,7 @@
                 </div>
             </section>
             <!-- Write html code 'do==add' till here -->
-        <?php
+<?php
         } else if ($do == 'insert') { // Insert Page starts here
             
             
@@ -205,6 +203,7 @@
                     $address    = $_POST['address']  ;
 
                     $hashedPass = sha1($pass);
+                    
                     // Validate Form
                     $formErrors   = array();
 
@@ -288,7 +287,7 @@
                                 'zemail'    => $email,
                                 'zphone'    => $phone,
                                 'zaddress'  => $address,
-                                'zavatar'  => $avatar
+                                'zavatar'   => $avatar
                             ));
 
                             // Echo Success Message
@@ -329,10 +328,8 @@
             // Count Row
             $count = $stmt -> rowCount();
 
-            if($count > 0){// Nested if ends here 
-                  
-        ?>
-
+            if($count > 0){// Nested if ends here                   
+?>
             <!-- Write html code for 'do==edit' here -->
 
             <!-- Create form for Members Profile Edit page  -->
@@ -528,7 +525,8 @@
 
         }
         include $tpl . 'footer.php';
-    }else{
+    }// First If ends here
+    else{
         header('Location: index.php');
         exit();
     }   

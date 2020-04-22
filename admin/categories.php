@@ -230,7 +230,7 @@
                                 <select name="cat_parent"   class="form-control">
                                     <option value="0">None</option>
                                     <?php
-                                        $allCats = getAllFrom("*", "categories", "WHERE Cat_parent = 0", "", "Cat_id", "DESC");
+                                        $allCats = getAllFrom("*", "categories", "WHERE Cat_parent = 0", "", "Cat_id", "ASC");
                                         
                                         foreach ($allCats as $category) {
                                             echo "<option value='{$category['Cat_id']}'>{$category['Cat_name']}</option>";
@@ -407,7 +407,7 @@
                                         <option value="0">None</option>
                                         <?php
                                             // Function - Which can call all the parent categories
-                                            $allCats = getAllFrom("*", "categories", "WHERE Cat_parent = 0", "", "Cat_id", "DESC");
+                                            $allCats = getAllFrom("*", "categories", "WHERE Cat_parent = 0", "", "Cat_id", "ASC");
                                             
                                             foreach ($allCats as $category) {
                                                 echo "<option value='{$category['Cat_id']}'>{$category['Cat_name']}</option>";

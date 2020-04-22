@@ -31,7 +31,7 @@
         // Make the MySQL query dynamic using $select, $table, $value [Being called from members page]
         global $connection ;
 
-        $statement = $connection->prepare("SELECT $select FROM $table WHERE $select=? ");
+        $statement = $connection->prepare("SELECT $select FROM $table WHERE $select= ? ");
         $statement -> execute(array($value));
         $count     = $statement->rowCount(); 
 
@@ -115,7 +115,7 @@
 
     /*
     =====================================================================
-    =  Get all data from Database - getAllFrom()
+    =  Get all data(everything) from Database - getAllFrom()
     =====================================================================
     */
     function getAllFrom($field, $table, $where = NULL, $and = NULL, $orderingfield, $ordertype){
@@ -131,10 +131,10 @@
     
     /*
     =====================================================================
-    =  Count all the Users of the system
+    =  Count all the items of the data
     =====================================================================
     */
-    function countUsers($items, $table){
+    function countAll($items, $table){
         global $connection;
         $stmt = $connection->prepare("SELECT COUNT($items) FROM $table");
         $stmt->execute();
