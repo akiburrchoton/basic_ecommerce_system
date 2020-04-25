@@ -31,6 +31,7 @@
                     <?= $_SESSION['Username']; ?> 
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Go to Home</a>
                     <a class="dropdown-item" href="#">Settings</a>
                     <a class="dropdown-item" href="members.php?do=edit&userid=<?= $_SESSION['UserID']; ?>">Edit Profile</a> 
                     <a class="dropdown-item" href="logout.php">Logout</a>

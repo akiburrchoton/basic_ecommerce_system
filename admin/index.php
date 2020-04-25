@@ -3,55 +3,47 @@ session_start();
 $pageTitle = 'Login';
 $noNavBar  = '';
 
-
 if (isset($_SESSION['Username'])) {
-    header('Location : dashboard.php');
+    header('Location:dashboard.php');
 }
 
 include 'init.php';
 
-// Check if the users can come from HTTP Request.
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username   = $_POST['user'];
-    $password   = $_POST['pass'];
-    $hashedpass = sha1($password);
+    // Check if the users can come from HTTP Request.
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $username   = $_POST['user'];
+        $password   = $_POST['pass'];
+        $hashedpass = sha1($password);
 
 
-    $statement = $connection->prepare("SELECT 
-                                UserID, Username, Password 
-                            FROM 
-                                users 
-                            WHERE 
-                                Username = ? 
-                            AND 
-                                Password = ?
-                            AND
-                                GroupID = 1
-                            Limit 1
-                            ");
+        $statement = $connection->prepare("SELECT 
+                                    UserID, Username, Password, RegStatus
+                                FROM 
+                                    users 
+                                WHERE 
+                                    Username = ? 
+                                AND 
+                                    Password = ?
+                                AND
+                                    GroupID = 1
+                                Limit 1
+                                ");
 
-    $statement->execute(array($username, $hashedpass));
-    $row = $statement->fetch();
-    $count = $statement->rowCount();
-
-    if ($count > 0) {
-        // Check the user registered or not
-        //echo 'Welcome '. $username;
-
-
-        $_SESSION['Username'] = $username; // Register Username for Session
-        $_SESSION['UserID']   = $row['UserID']; // Register UserID for Session
-
-        header("Location:dashboard.php");
-        exit();
-    } else {
-        if ($row['RegStatus'] == 0) {
-            echo "<div class='alert alert-danger'>You are not activated yet!</div>";
+        $statement->execute([$username, $hashedpass]);
+        $row = $statement->fetch();
+        $count = $statement->rowCount();
+        
+        if ($count > 0) {
+            $_SESSION['Username'] = $username; // Register Username for Session
+            $_SESSION['UserID']   = $row['UserID']; // Register UserID for Session
+            
+            header("Location:dashboard.php");
+            exit();
+            
         } else {
-            echo 'Wrong Username or Password!';
+            echo "Wrong Username or Password!";  
         }
     }
-}
 
 ?>
 

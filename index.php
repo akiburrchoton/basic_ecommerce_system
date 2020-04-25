@@ -1,11 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce Website</title>
-</head>
-<body>
-    
-</body>
-</html>
+<?php
+    ob_start(); // For live hosting so that the header files can be fetched easily.
+    session_start();
+
+    $pageTitle = 'Homepage';
+
+    include 'init.php';
+?>
+
+    <!-- HTML Start -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="text-center">Ecommerce System</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<?php
+    include $tpl . 'footer.php';
+    ob_end_flush();
+?>
+

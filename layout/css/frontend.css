@@ -1,0 +1,44 @@
+/* =======================================
+= Front End Global CSS
+======================================= */
+
+@import url("https://fonts.googleapis.com/css?family=Spartan:100,200,300,400,500,600,700,800,900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: "Spartan", sans-serif;
+  background-color: #e7e7e7;
+  min-height: 100vh;
+}
+
+
+/* Upper Nav bar */
+
+.upper-navbar{
+  padding : 20px 0px;
+  background-color: #e7e7e7;
+}
+
+.login-page h1{
+  color: #333333;
+  cursor: pointer;
+}
+
+.login-page form{
+  max-width: 350px;
+  margin : 25px auto;
+}
+
+.login-page [data-class="login"].selected{
+  color: green;
+}
+.login-page [data-class="signup"].selected{
+  color: #007bff;
+}
+
+.login-page .signup{
+  display : none;
+}
