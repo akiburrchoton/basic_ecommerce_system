@@ -14,7 +14,13 @@ body {
   min-height: 100vh;
 }
 
-
+.img-center{
+  display: block;
+  margin: 0 auto;
+}
+.cart-btn{
+  color: #fff;
+}
 /* Upper Nav bar */
 
 .upper-navbar{
@@ -41,4 +47,51 @@ body {
 
 .login-page .signup{
   display : none;
+}
+
+.user-img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+
+/* Profile Page CSS */
+.item-box{
+  padding: 20px;
+  border: 2px solid #e7e7e7;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  min-height: 500px;
+  box-shadow: 0px 10px 20px #e8e8e8;
+}
+
+.price-tag{
+  position: absolute;
+  right: 0;
+  color: #fff;
+  font-weight: 700;
+  padding: 5px 15px;
+  background: #2da2ae;
+}
+
+.item-name{
+  color: #2da2ae;
+  font-size: 22px;
+  text-transform: uppercase;
+  padding: 15px 20px 0px;
+  font-weight: 700;
+}
+
+.item-date p{
+  margin: 0;
+  font-weight: 500;
+}
+
+.item-desc{
+  font-weight: 400;
+  font-size: 14px;
+  margin-bottom: 20px;
 }

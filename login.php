@@ -5,7 +5,7 @@
     $pageTitle = 'Login';
 
     if (isset($_SESSION['user'])) {
-    header('Location:index.php');
+        header('Location:index.php');
     }
     include 'init.php';
 
@@ -36,7 +36,7 @@
 
         if ($count > 0) {
             $_SESSION['user']   = $username;
-            $_SESSION['uid']    = $UserID;
+            $_SESSION['uid']    = $get['UserID'];
 
             header("Location:index.php");
             exit();
@@ -102,6 +102,8 @@
 
                     $successMsg = "Congratulations, You are now signed up!";
                 }
+            }else{
+                $successMsg = "Sorry, Signup couldn't be done!";
             }
 
         }//else ends

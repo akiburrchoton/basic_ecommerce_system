@@ -63,36 +63,6 @@
             exit();
     }
 
-
-
-
-    /*
-    =====================================================================
-    =  This function accepts parameter 
-    =  $message = Echo the message [Error or Success or Warning]
-    =  $url     = The link you want to redirect
-    =  $seconds = after how many seconds it will redirect
-    =====================================================================
-    */
-    // function getAllFrom($a, $b, $c, $d, $e, $f){
-    //     if($url === null){
-    //         $url    = 'index.php';
-    //         $link   = 'Homepage';
-    //     }else{
-    //         // Condition ? True : False 
-            
-    //         $url = isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] !== '' ? $_SERVER['HTTP_REFERER'] : 'index.php'; 
-    //         $link = 'Previous Page'; 
-    //     }
-    //         echo $message; 
-
-    //         echo "<div class='alert alert-info'>You will be redirected to $link after $seconds Seconds</div>";
-    //         header("refresh:$seconds; url = $url"); // Refresh must be written as [refresh:$seconds]
-    //         exit();
-    // }
-
-
-
     /*
     =====================================================================
     =  Get the latest records  
