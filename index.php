@@ -33,7 +33,7 @@
                                     echo '<div class="item-box">';
                                         echo "<span class='price-tag'><i class='fa fa-tag'></i>{$item["Item_price"]}</span>";
                                         echo "<img src='layout/images/jordan.png' class='img-fluid'>";
-                                        echo "<h4 class='item-name'>{$item['Item_name']}</h4>";
+                                        echo "<h4 class='item-name'> <a href='items.php?itemid={$item['Item_ID']}'>{$item['Item_name']}</a></h4>";
                                         echo "<p class='item-date'>{$item['Item_date']}</p>";
                                         echo "<p class='item-desc'>{$item['Item_description']}</p>";
                                         echo '<button class="btn btn-warning btn-block cart-btn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>';
@@ -42,6 +42,7 @@
                             }
                         ?>
                     </div>
+                   
                 </div>
             </div>
 

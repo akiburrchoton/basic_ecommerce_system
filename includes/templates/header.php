@@ -68,9 +68,11 @@
 
           foreach ($allCats as $cat) {
             echo 
-            '<li class="nav-class">
-
-            </li>';
+            "<li class='nav-class'>
+              <a href='categories.php?pageid={$cat['Cat_id']}'>
+                  {$cat['Cat_name']}
+              </a>
+            </li>";
           }
 
         ?>
