@@ -8,7 +8,8 @@
 
 ?>
 
-    <!-- HTML Start -->
+    <!-- HTML Start | date - 06.25.2020-->
+
     <section>
         <div class="container">
             <div class="row">
